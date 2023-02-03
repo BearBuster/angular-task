@@ -1,0 +1,19 @@
+<mat-card class="mb-3" *ngFor="let i of data">
+  <mat-card-title>
+    {{i.groupName}}
+    <button mat-button (click)="deleteGroup(i.id)">Delete</button>
+  </mat-card-title>
+  <mat-card-subtitle *ngIf="i.warning">{{i.warning}}</mat-card-subtitle>
+  <mat-card-content class="d-flex" style="margin-left: 3px">
+    <mat-card *ngFor="let j of i.functions">
+      <mat-card-content>
+        <h3>{{j.title}}</h3>
+        <div class="d-flex">
+          <p>{{j.minValue}}</p>
+          -
+          <p>{{j.maxValue}}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-card-content>
+</mat-card>

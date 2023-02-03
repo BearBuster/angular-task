@@ -1,0 +1,19 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+mat-card:hover {
+  border: solid 1px red;
+}
+
+mat-card{
+  border: solid 1px transparent;
+}
+
+mat-card:hover mat-icon{
+  display: inline;
+  width: auto;
+}
+
+.warning-icon {
+  display: none;
+}
+

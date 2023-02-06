@@ -1,0 +1,35 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+mat-card:hover {
+  border: 1px yellow solid;
+}
+
+mat-card:hover .bi-exclamation-diamond {
+  color: yellow;
+}
+
+mat-card {
+  border: 1px solid transparent;
+}
+
+.dropdown:hover .bi-three-dots {
+  color: deepskyblue;
+}
+
+.circle {
+  display: inline-block;
+  background-color: gray;
+  margin-left: 2px;
+  border-radius: 50%;
+}
+
+.circle-inner {
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  height: 40px;
+  width: 40px;
+  font-size: 15px;
+}

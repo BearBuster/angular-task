@@ -1,19 +1,53 @@
-<mat-card class="mb-3" *ngFor="let i of data">
-  <mat-card-title>
-    {{i.groupName}}
-    <button mat-button (click)="deleteGroup(i.id)">Delete</button>
+<mat-card class="mb-3 p-3" *ngFor="let i of data">
+  <mat-card-title class="d-flex justify-content-between">
+    <div>
+      <i class="bi bi-exclamation-diamond mx-1"></i>{{i.groupName}}
+  <!--    <i-->
+  <!--      [matMenuTriggerFor]="menu"-->
+  <!--      #triggerBtn="matMenuTrigger"-->
+  <!--      class="bi bi-three-dots"-->
+  <!--      (mouseenter)="triggerBtn.openMenu()"-->
+  <!--    ></i>-->
+  <!--    <mat-menu #menu="matMenu">-->
+  <!--      <button mat-menu-item>Item 1</button>-->
+  <!--      <button mat-menu-item>Item 2</button>-->
+  <!--    </mat-menu>-->
+
+      <div ngbDropdown #myDrop="ngbDropdown" class="d-inline-block dropdown" (mouseleave)="myDrop.close()">
+        <i
+          class="bi bi-three-dots"
+          (mouseenter)="myDrop.open()"
+        ></i>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="deleteGroup(i.id)">Delete</button>
+          <button ngbDropdownItem (click)="deleteGroup(i.id)">Modify</button>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex opacity-50">
+      <div class="circle" *ngFor="let k of i.users">
+        <p class="circle-inner">{{k.userInitials}}</p>
+      </div>
+    </div>
   </mat-card-title>
   <mat-card-subtitle *ngIf="i.warning">{{i.warning}}</mat-card-subtitle>
-  <mat-card-content class="d-flex" style="margin-left: 3px">
-    <mat-card *ngFor="let j of i.functions">
-      <mat-card-content>
-        <h3>{{j.title}}</h3>
-        <div class="d-flex">
-          <p>{{j.minValue}}</p>
-          -
-          <p>{{j.maxValue}}</p>
-        </div>
-      </mat-card-content>
-    </mat-card>
+  <mat-card-content class="d-flex">
+      <div class="rounded-circle p-2 border border-dark" style="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
+          <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z"/>
+        </svg>
+      </div>
+    weqwe
+<!--    <mat-card *ngFor="let j of i.functions">-->
+<!--      <mat-card-content>-->
+<!--        <h3>{{j.title}}</h3>-->
+<!--        <div class="d-flex">-->
+<!--          <p>{{j.minValue}}</p>-->
+<!--          - -->
+<!--          <p>{{j.maxValue}}</p>-->
+<!--        </div>-->
+<!--      </mat-card-content>-->
+<!--    </mat-card>-->
   </mat-card-content>
 </mat-card>

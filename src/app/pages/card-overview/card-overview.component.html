@@ -1,51 +1,138 @@
-<mat-grid-list cols="1" rowHeight="90vh">
+
+<mat-grid-list cols="1" rowHeight="200px">
   <mat-grid-tile>
-    <mat-card style="width: 75%; height: 98%; display: flex;justify-content: space-between;">
-      <div>
-        <mat-card-header>
-          <mat-card-title>Some Title</mat-card-title>
-          <mat-card-subtitle>Some subTitle</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="pt-3">
-          <form>
-            <mat-grid-list cols="2" rowHeight="100">
-              <mat-grid-tile>
-                <div class="w-80">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile>
-                <div class="w-80">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile>
-                <div class="w-80">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile>
-                <div class="w-80">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile>
-                <div class="w-80">
-                  <label for="email" class="form-label">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="name@example.com">
-                </div>
-              </mat-grid-tile>
-            </mat-grid-list>
-          </form>
-        </mat-card-content>
+    <div class="card w-100">
+      <div class="card-body">
+        <h1 class="card-title">Dettagli gruppo di firma</h1>
+        <div class="card-text d-flex justify-content-between">
+          <div class="d-flex">
+            <mat-form-field style="margin-right: 10px">
+              <mat-label>Nome gruppo</mat-label>
+              <input matInput [(ngModel)]="groupDetails.groupName">
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px">
+              <mat-label>Soglia minima servizi</mat-label>
+              <input matInput [(ngModel)]="groupDetails.minValue">
+            </mat-form-field>
+            <mat-form-field style="margin-right: 10px">
+              <mat-label>Soglia massima servizi</mat-label>
+              <input matInput [(ngModel)]="groupDetails.minValue">
+            </mat-form-field>
+          </div>
+
+          <div class="d-flex opacity-50" style="padding-top: 10px">
+            <div class="circle" *ngFor="let user of groupDetails.users">
+              <p class="circle-inner">{{user.userInitials}}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <mat-card-actions>
-        <button mat-button>Edit</button>
-      </mat-card-actions>
-    </mat-card>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>
+
+<mat-grid-list cols="2" rowHeight="800px" [gutterSize]="'10px'">
+  <mat-grid-tile >
+    <div class="card w-100 h-100">
+      <div class="card-body">
+        <h1 class="card-title">
+          Abilita servizi per gruppo di firma
+          <h3 class="card-subtitle text-secondary">Seleziona i servizi e imposta la relativa soglia</h3>
+        </h1>
+        <mat-grid-list cols="9" rowHeight="50px" [gutterSize]="'10px'">
+          <mat-grid-tile colspan="3">
+            <div class="w-100 h-100">
+              <h3 class="text-secondary fw-bold">Servizio</h3>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <div class="w-100 h-100">
+              <h3 class="text-secondary fw-bold">Soglia minima</h3>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2">
+            <div class="w-100 h-100">
+              <h3 class="text-secondary fw-bold">Soglia massima</h3>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+          </mat-grid-tile>
+        </mat-grid-list>
+        <app-function-row
+          *ngFor="let function of functionList"
+          [functionDetails]="existInListOfGroupFunctions(function)"
+
+        >
+        </app-function-row>
+
+      </div>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="card w-100 h-100">
+      <div class="card-body">
+        <h1 class="card-title">
+          Seleziona utenti da aggiungere al gruppo
+          <h3 class="card-subtitle text-secondary">Sono disponibili solo gli utenti dispositivi</h3>
+        </h1>
+        <div class="card-text">
+          qweqwe
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<!--<mat-grid-list cols="2" rowHeight="90vh">-->
+<!--  <mat-grid-tile>-->
+<!--    <mat-card style="margin: 1px; width: 100%;height: 100%; display: flex;justify-content: space-between;">-->
+<!--      <div>-->
+<!--        <mat-card-header>-->
+<!--          <mat-card-title>Some Title</mat-card-title>-->
+<!--          <mat-card-subtitle>Some subTitle</mat-card-subtitle>-->
+<!--        </mat-card-header>-->
+<!--        <mat-card-content class="pt-3">-->
+<!--          <form>-->
+<!--            <mat-grid-list cols="2" rowHeight="100">-->
+<!--              <mat-grid-tile>-->
+<!--                <div class="w-80">-->
+<!--                  <label for="email" class="form-label">Email address</label>-->
+<!--                  <input type="email" class="form-control" id="email" placeholder="name@example.com">-->
+<!--                </div>-->
+<!--              </mat-grid-tile>-->
+<!--              <mat-grid-tile>-->
+<!--                <div class="w-80">-->
+<!--                  <label for="email" class="form-label">Email address</label>-->
+<!--                  <input type="email" class="form-control" id="email" placeholder="name@example.com">-->
+<!--                </div>-->
+<!--              </mat-grid-tile>-->
+<!--              <mat-grid-tile>-->
+<!--                <div class="w-80">-->
+<!--                  <label for="email" class="form-label">Email address</label>-->
+<!--                  <input type="email" class="form-control" id="email" placeholder="name@example.com">-->
+<!--                </div>-->
+<!--              </mat-grid-tile>-->
+<!--              <mat-grid-tile>-->
+<!--                <div class="w-80">-->
+<!--                  <label for="email" class="form-label">Email address</label>-->
+<!--                  <input type="email" class="form-control" id="email" placeholder="name@example.com">-->
+<!--                </div>-->
+<!--              </mat-grid-tile>-->
+<!--              <mat-grid-tile>-->
+<!--                <div class="w-80">-->
+<!--                  <label for="email" class="form-label">Email address</label>-->
+<!--                  <input type="email" class="form-control" id="email" placeholder="name@example.com">-->
+<!--                </div>-->
+<!--              </mat-grid-tile>-->
+<!--            </mat-grid-list>-->
+<!--          </form>-->
+<!--        </mat-card-content>-->
+<!--      </div>-->
+<!--      <mat-card-actions>-->
+<!--        <button mat-button>Edit</button>-->
+<!--      </mat-card-actions>-->
+<!--    </mat-card>-->
+<!--  </mat-grid-tile>-->
+<!--</mat-grid-list>-->

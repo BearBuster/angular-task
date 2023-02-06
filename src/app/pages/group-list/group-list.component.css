@@ -1,19 +1,32 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
-mat-card:hover {
-  border: 1px yellow solid;
-}
-
-mat-card:hover .bi-exclamation-diamond {
-  color: yellow;
+.error-card{
+  border: 1px #ffa726 solid;
 }
 
 mat-card {
   border: 1px solid transparent;
 }
 
+.error-card .bi-exclamation-diamond {
+  color: #ffa726;
+  display: inline;
+}
+
+.bi-exclamation-diamond {
+  display: none;
+}
+
 .dropdown:hover .bi-three-dots {
-  color: deepskyblue;
+  color: #2196f3;
+}
+
+mat-card:hover .bi-three-dots {
+  display: inline;
+}
+
+.bi-three-dots {
+  display: none;
 }
 
 .circle {
@@ -32,4 +45,15 @@ mat-card {
   height: 40px;
   width: 40px;
   font-size: 15px;
+}
+
+.card-info {
+  color: #2196f3;
+  border-color: #2196f3!important;
+  margin-right: 15px;
+}
+
+mat-card:hover .card-info {
+  color: gray;
+  border-color: gray!important;
 }

@@ -1,0 +1,25 @@
+<mat-grid-list cols="9" rowHeight="50px">
+  <mat-grid-tile colspan="3">
+    <div class="w-100 h-100">
+      <mat-slide-toggle [(ngModel)]="isActive" title="{{functionDetails.title}}">{{functionDetails.title}}</mat-slide-toggle>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <div class="w-100 h-100" style="padding-right: 15px">
+      <mat-form-field>
+        <mat-label></mat-label>
+        <input matInput [(ngModel)]="functionDetails.minValue" [disabled]="!isActive">
+        <mat-icon matSuffix>attach_money</mat-icon>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <div class="w-100 h-100" style="padding-right: 15px">
+      <mat-form-field>
+        <mat-label></mat-label>
+        <input matInput [(ngModel)]="functionDetails.maxValue" [disabled]="!isActive">
+        <mat-icon matSuffix>attach_money</mat-icon>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

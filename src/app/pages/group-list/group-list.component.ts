@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {GoupService} from "../../services/goup.service";
+import {GroupService} from "../../services/group.service";
 import {IGroupe} from "../../interfaces/igroupe";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-group-list',
@@ -10,8 +11,9 @@ import {IGroupe} from "../../interfaces/igroupe";
 export class GroupListComponent implements OnInit{
 
   data: IGroupe[] = []
+  filterString: string = ''
 
-  constructor(public groupService: GoupService) {}
+  constructor(public groupService: GroupService, public router: Router) {}
 
   ngOnInit(): void {
     this.data = this.groupService.getAllGroups()

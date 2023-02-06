@@ -10,22 +10,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { GroupListComponent } from './pages/group-list/group-list.component';
+import {FormsModule} from "@angular/forms";
+import { GroupListFilterPipe } from './pipes/group-list-filter.pipe';
+import { FunctionRowComponent } from './components/function-row/function-row.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardListComponent,
     CardOverviewComponent,
-    GroupListComponent
+    GroupListComponent,
+    GroupListFilterPipe,
+    FunctionRowComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    NgbModule,
-    RouterOutlet,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        NgbModule,
+        RouterOutlet,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -10,9 +10,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { GroupListComponent } from './pages/group-list/group-list.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { GroupListFilterPipe } from './pipes/group-list-filter.pipe';
 import { FunctionRowComponent } from './components/function-row/function-row.component';
+import { GroupCardComponent } from './components/group-card/group-card.component';
+import { CardOverviewMainInfoComponent } from './components/card-overview-main-info/card-overview-main-info.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FunctionRowComponent } from './components/function-row/function-row.com
     CardOverviewComponent,
     GroupListComponent,
     GroupListFilterPipe,
-    FunctionRowComponent
+    FunctionRowComponent,
+    GroupCardComponent,
+    CardOverviewMainInfoComponent
   ],
     imports: [
         BrowserModule,
@@ -30,7 +34,8 @@ import { FunctionRowComponent } from './components/function-row/function-row.com
         NgbModule,
         RouterOutlet,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

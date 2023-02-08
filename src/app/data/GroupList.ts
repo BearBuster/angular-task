@@ -1,17 +1,17 @@
-import {IGroupe} from "../interfaces/igroupe";
+import {Group} from "../interfaces/Group";
 
-export const groupListData: IGroupe[] = [
+export const GroupList: Group[] = [
   {
     functions: [
       {
-        title: 'MAV',
-        functionCode: 'MAV-SLIP',
+        name: 'MAV',
+        code: 'MAV-SLIP',
         minValue: '1',
         maxValue: '500',
       },
       {
-        title: 'RAV',
-        functionCode: 'RAV-SLIP',
+        name: 'RAV',
+        code: 'RAV-SLIP',
         minValue: '1',
         maxValue: '500',
       },
@@ -22,7 +22,7 @@ export const groupListData: IGroupe[] = [
     maxValue: '500',
     users: [
       {
-        userId: '09452W4295001',
+        id: '09452W4295001',
         userInitials: 'EB',
         fullName: 'Elisa Blu',
       },
@@ -32,38 +32,38 @@ export const groupListData: IGroupe[] = [
   {
     functions: [
       {
-        title: 'F24 Accountant',
-        functionCode: 'CBI-F24-ACCOUNTANT-PAYMENT',
+        name: 'F24 Accountant',
+        code: 'CBI-F24-ACCOUNTANT-PAYMENT',
         minValue: '2',
         maxValue: '150',
       },
       {
-        title: 'F24',
-        functionCode: 'CBI-F24-PAYMENT',
+        name: 'F24',
+        code: 'CBI-F24-PAYMENT',
         minValue: '2',
         maxValue: '150',
       },
       {
-        title: 'Bonifico Italia',
-        functionCode: 'CBI-ITALY-TRANSFER',
+        name: 'Bonifico Italia',
+        code: 'CBI-ITALY-TRANSFER',
         minValue: '2',
         maxValue: '150',
       },
       {
-        title: 'MAV',
-        functionCode: 'MAV-SLIP',
+        name: 'MAV',
+        code: 'MAV-SLIP',
         minValue: '2',
         maxValue: '150',
       },
       {
-        title: 'RAV',
-        functionCode: 'RAV-SLIP',
+        name: 'RAV',
+        code: 'RAV-SLIP',
         minValue: '2',
         maxValue: '150',
       },
       {
-        title: 'Bonifico SEPA',
-        functionCode: 'SEPA-TRANSFER',
+        name: 'Bonifico SEPA',
+        code: 'SEPA-TRANSFER',
         minValue: '2',
         maxValue: '150',
       },
@@ -74,17 +74,17 @@ export const groupListData: IGroupe[] = [
     maxValue: '50',
     users: [
       {
-        userId: '09452W4295001',
+        id: '09452W4295001',
         userInitials: 'EB',
         fullName: 'Elisa Blu',
       },
       {
-        userId: '09452W4295002',
+        id: '09452W4295002',
         userInitials: 'SN',
         fullName: 'Sara Neri',
       },
       {
-        userId: '09452W4295003',
+        id: '09452W4295003',
         userInitials: 'CD',
         fullName: 'Clone Dispo',
       },
@@ -94,14 +94,14 @@ export const groupListData: IGroupe[] = [
   {
     functions: [
       {
-        title: 'MAV',
-        functionCode: 'MAV-SLIP',
+        name: 'MAV',
+        code: 'MAV-SLIP',
         minValue: '1',
         maxValue: '10',
       },
       {
-        title: 'RAV',
-        functionCode: 'RAV-SLIP',
+        name: 'RAV',
+        code: 'RAV-SLIP',
         minValue: '1',
         maxValue: '10',
       },
@@ -112,7 +112,7 @@ export const groupListData: IGroupe[] = [
     maxValue: '10',
     users: [
       {
-        userId: '09452W4295002',
+        id: '09452W4295002',
         userInitials: 'SN',
         fullName: 'Sara Neri',
       },
@@ -121,8 +121,8 @@ export const groupListData: IGroupe[] = [
   {
     functions: [
       {
-        title: 'Bonifico SEPA',
-        functionCode: 'SEPA-TRANSFER',
+        name: 'Bonifico SEPA',
+        code: 'SEPA-TRANSFER',
         minValue: 'null',
         maxValue: 'null',
       },
@@ -133,12 +133,32 @@ export const groupListData: IGroupe[] = [
     maxValue: '100000',
     users: [
       {
-        userId: '09452W4295001',
+        id: '09452W4295001',
         userInitials: 'EB',
         fullName: 'Elisa Blu',
       },
       {
-        userId: '09452W4295002',
+        id: '09452W4295002',
+        userInitials: 'SN',
+        fullName: 'Sara Neri',
+      },
+      {
+        id: '09452W4295001',
+        userInitials: 'EB',
+        fullName: 'Elisa Blu',
+      },
+      {
+        id: '09452W4295002',
+        userInitials: 'SN',
+        fullName: 'Sara Neri',
+      },
+      {
+        id: '09452W4295001',
+        userInitials: 'EB',
+        fullName: 'Elisa Blu',
+      },
+      {
+        id: '09452W4295002',
         userInitials: 'SN',
         fullName: 'Sara Neri',
       },

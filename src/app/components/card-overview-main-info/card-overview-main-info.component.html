@@ -1,0 +1,38 @@
+<button (click)="ss()">ss</button>
+
+<div class="w-100 mb-4 my-shadow container rounded pt-3" [formGroup]="formGroup" >
+  <h3>Dettagli gruppo di firma</h3>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex">
+      <label class="d-flex flex-column text-secondary m-2">
+        Nome gruppo
+        <input type="text" class="my-form-control" formControlName="groupName" >
+      </label>
+
+      <label class="d-flex flex-column text-secondary m-2">
+        Soglia minima servizi
+        <div class="my-form-control d-flex">
+          <input type="number" formControlName="minValue">
+          <div style="padding-top: 6px">EURO</div>
+        </div>
+      </label>
+
+      <label class="d-flex flex-column text-secondary m-2">
+        Soglia massima servizi
+        <div class="my-form-control d-flex">
+          <input type="number" formControlName="maxValue">
+          <div style="padding-top: 6px">EURO</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="d-flex opacity-50 m-2">
+      <div class="circle">
+        <p class="circle-inner">1</p>
+      </div>
+      <div class="circle">
+        <p class="circle-inner">2</p>
+      </div>
+    </div>
+  </div>
+</div>

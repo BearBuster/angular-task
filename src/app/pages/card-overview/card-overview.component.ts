@@ -1,59 +1,49 @@
 import {Component, OnInit} from '@angular/core';
-import {IFunction} from "../../interfaces/IFunction";
-import {functions} from "src/app/data/FunctionsData"
-import {functionDetails, IGroupe} from "../../interfaces/igroupe";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Group} from "../../interfaces/Group";
 import {GroupService} from "../../services/group.service";
-import {ActivatedRoute} from "@angular/router";
-import {IUser} from "../../interfaces/IUser";
-import {UsersData} from "../../data/UsersData";
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-card-overview',
   templateUrl: './card-overview.component.html',
-  styleUrls: ['./card-overview.component.css']
+  styleUrls: ['./card-overview.component.css', './custom-checkbox.scss']
 })
 export class CardOverviewComponent implements OnInit{
 
-  functionList: IFunction[] = []
-  usersList: IUser[] = []
-  groupDetails: IGroupe;
-  constructor(private groupService: GroupService, private router: ActivatedRoute) {}
+  form: FormGroup
+
+  constructor(public formBuilder: FormBuilder, public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService) {}
 
   ngOnInit(): void {
-    this.functionList = this.groupService.getAllFunctions();
-    this.usersList = this.groupService.getAllUsers();
-    let urlParamId = this.router.snapshot.paramMap.get('id')
-    if (urlParamId){
-      this.groupDetails = this.groupService.getGroupById(Number(urlParamId))
+    this.form = this.createForm()
+    console.log(this.form)
+  }
+
+  createForm(){
+    let groupId = Number(this.activeRouter.snapshot.paramMap.get('id'))
+    let group = this.groupService.getGroupById(groupId)
+    if(group){
+      return this.formBuilder.group({
+        functions: new FormControl(this.utilsService.fetchFunctions(group.functions)),
+        groupName: group.groupName,
+        id: group.id,
+        maxValue: group.maxValue,
+        minValue: group.minValue,
+        users: new FormControl(this.utilsService.fetchUsers(group.users)),
+        warning: group.warning
+      })
     }else {
-      this.groupDetails = {
+      return this.formBuilder.group({
         functions: [],
         groupName: "",
         id: 0,
         maxValue: "",
         minValue: "",
-        users: []
-      }
-    }
-    console.log(this.groupDetails)
-    console.log(urlParamId)
-  }
-
-  qwe(){
-    console.log(this.groupDetails.functions)
-  }
-  existInListOfGroupFunctions(function_let: IFunction): functionDetails{
-    let tmp = this.groupDetails.functions.find(e=>{
-      return e.functionCode == function_let.function_code
-    })
-    if(tmp){
-      return tmp
-    }
-    return  {
-      title: function_let.function_name,
-      functionCode: function_let.function_code,
-      minValue: '',
-      maxValue: ''
+        users: [],
+        warning: ""
+      })
     }
   }
 

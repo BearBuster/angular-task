@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {IGroupe} from "../interfaces/igroupe";
+import {Group} from "../interfaces/Group";
 
 @Pipe({
   name: 'groupListFilter'
 })
 export class GroupListFilterPipe implements PipeTransform {
 
-  transform(value: IGroupe[], filterString: string): IGroupe[] {
+  transform(groups: Group[], filterString: string): Group[] {
 
-    return value.filter(e=>{
-      return e.groupName.toLowerCase().includes(filterString.toLowerCase())
+    return groups.filter(group=>{
+      return group.groupName.toLowerCase().includes(filterString.toLowerCase())
     });
   }
 

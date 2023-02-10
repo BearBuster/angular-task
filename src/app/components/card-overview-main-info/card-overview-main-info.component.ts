@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from "@angular/forms";
+import {Attribute, Component, Input, OnInit} from '@angular/core';
+import {ControlContainer, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-card-overview-main-info',
@@ -8,17 +8,7 @@ import {FormGroup} from "@angular/forms";
 })
 export class CardOverviewMainInfoComponent implements OnInit{
 
-  @Input() formGroup: FormGroup
-  qwe: string
-
-  ngOnInit(): void {
-    // console.log(this.formGroup.value.groupName = "Dimass")
-    // console.log(this.formGroup.value)
-    this.qwe = this.formGroup.value.minValue
-  }
-
-  ss(){
-    console.log(this.qwe)
-  }
+  constructor(public controlContainer: ControlContainer) {}
+  ngOnInit(): void {}
 
 }

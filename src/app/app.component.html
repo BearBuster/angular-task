@@ -3,9 +3,12 @@
     Angular Material 2 App
   </mat-toolbar>
   <div class="container">
-<!--    <app-group-list></app-group-list>-->
-<!--    <app-card-overview></app-card-overview>-->
-    <router-outlet></router-outlet>
+<!--    <form [formGroup]="form">-->
+      <app-toggle-slider [(toggle)]="qew" />
+      {{qew}}
+<!--    </form>-->
+<!--    {{ form.value | json }}-->
+<!--    <router-outlet />-->
   </div>
 </div>
 

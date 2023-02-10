@@ -15,6 +15,11 @@ import { GroupListFilterPipe } from './pipes/group-list-filter.pipe';
 import { FunctionRowComponent } from './components/function-row/function-row.component';
 import { GroupCardComponent } from './components/group-card/group-card.component';
 import { CardOverviewMainInfoComponent } from './components/card-overview-main-info/card-overview-main-info.component';
+import { CardOverviewFunctionListComponent } from './components/card-overview-function-list/card-overview-function-list.component';
+import { CardOverviewUserListComponent } from './components/card-overview-user-list/card-overview-user-list.component';
+import { MyInputComponent } from './components/my-input/my-input.component';
+import { ToggleSliderComponent } from './components/toggle-slider/toggle-slider.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,11 @@ import { CardOverviewMainInfoComponent } from './components/card-overview-main-i
     GroupListFilterPipe,
     FunctionRowComponent,
     GroupCardComponent,
-    CardOverviewMainInfoComponent
+    CardOverviewMainInfoComponent,
+    CardOverviewFunctionListComponent,
+    CardOverviewUserListComponent,
+    MyInputComponent,
+    ToggleSliderComponent
   ],
     imports: [
         BrowserModule,

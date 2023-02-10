@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
 import {Group} from "../../interfaces/Group";
+import {ActivatedRoute} from "@angular/router";
 import {GroupService} from "../../services/group.service";
 import {UtilsService} from "../../services/utils.service";
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-card-overview',
@@ -12,26 +12,26 @@ import {UtilsService} from "../../services/utils.service";
 })
 export class CardOverviewComponent implements OnInit{
 
+  group: Group
   form: FormGroup
 
-  constructor(public formBuilder: FormBuilder, public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService) {}
-
+  constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder) {}
   ngOnInit(): void {
     this.form = this.createForm()
-    console.log(this.form)
+    this.form.disable()
   }
 
   createForm(){
-    let groupId = Number(this.activeRouter.snapshot.paramMap.get('id'))
-    let group = this.groupService.getGroupById(groupId)
+  let groupId = Number(this.activeRouter.snapshot.paramMap.get('id'))
+  let group = this.groupService.getGroupById(groupId)
     if(group){
       return this.formBuilder.group({
-        functions: new FormControl(this.utilsService.fetchFunctions(group.functions)),
+        functions: this.formBuilder.array(this.utilsService.fetchFunctions(group.functions).map(fun => this.formBuilder.group(fun))),
         groupName: group.groupName,
         id: group.id,
         maxValue: group.maxValue,
         minValue: group.minValue,
-        users: new FormControl(this.utilsService.fetchUsers(group.users)),
+        users: this.formBuilder.array(this.utilsService.fetchUsers(group.users)),
         warning: group.warning
       })
     }else {
@@ -47,4 +47,15 @@ export class CardOverviewComponent implements OnInit{
     }
   }
 
+  get functions(){
+    return this.form.get("functions") as FormArray
+  }
+
+  toggleFunctionInput(value: any){
+    console.log(value)
+  }
+
+  submit() {
+    console.log(this.form.value)
+  }
 }

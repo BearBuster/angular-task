@@ -26,7 +26,9 @@ export class UtilsService {
         } as Function
       }else {
         return {
-          ...fun
+          ...fun,
+          minValue: '',
+          maxValue: ''
         } as Function
       }
     })

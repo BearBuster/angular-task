@@ -21,6 +21,7 @@ import { MyInputComponent } from './components/my-input/my-input.component';
 import { ToggleSliderComponent } from './components/toggle-slider/toggle-slider.component';
 import {TruncatePipesModule} from "angular-truncate-pipes";
 import { UserCheckboxComponent } from './components/user-checkbox/user-checkbox.component';
+import { UserFormFilterPipe } from './pipes/user-form-filter.pipe';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { UserCheckboxComponent } from './components/user-checkbox/user-checkbox.
     CardOverviewUserListComponent,
     MyInputComponent,
     ToggleSliderComponent,
-    UserCheckboxComponent
+    UserCheckboxComponent,
+    UserFormFilterPipe
   ],
     imports: [
         BrowserModule,

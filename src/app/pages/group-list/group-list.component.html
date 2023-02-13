@@ -1,4 +1,5 @@
-<mat-form-field>
+<div class="mb-5">
+  <mat-form-field>
   <mat-label>Filtra...</mat-label>
   <input matInput [(ngModel)]="filterString">
 </mat-form-field>
@@ -7,3 +8,5 @@
   *ngFor="let group of this.groupService.groupList | groupListFilter : filterString"
   [group]="group"
 ></app-group-card>
+
+</div>

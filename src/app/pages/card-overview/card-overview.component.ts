@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Group} from "../../interfaces/Group";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {GroupService} from "../../services/group.service";
 import {UtilsService} from "../../services/utils.service";
 import {Form, FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {Function} from "../../interfaces/Function"
+import {User} from "../../interfaces/User";
 
 @Component({
   selector: 'app-card-overview',
@@ -16,7 +18,7 @@ export class CardOverviewComponent implements OnInit{
   group: Group
   form: FormGroup
 
-  constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder) {}
+  constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder, public router: Router) {}
   ngOnInit(): void {
     this.form = this.createForm()
     console.log(this.form.value)
@@ -43,12 +45,18 @@ export class CardOverviewComponent implements OnInit{
       })
     }else {
       return this.formBuilder.group({
-        functions: [],
+        functions: this.formBuilder.array(
+          this.utilsService.fetchFunctions()
+            .map(fun => this.formBuilder.group(fun))
+        ),
         groupName: "",
         id: 0,
         maxValue: "",
         minValue: "",
-        users: [],
+        users: this.formBuilder.array(
+          this.utilsService.fetchUsers()
+            .map(user => this.formBuilder.group(user))
+        ),
         warning: ""
       })
     }
@@ -67,6 +75,28 @@ export class CardOverviewComponent implements OnInit{
   }
 
   submit() {
-    console.log(this.form.value)
+    let values = this.form.value
+    if(values.id){
+      this.groupService.removeGroupById(values.id)
+    }
+    let warning = ''
+    this.groupService.addGroupList({
+      functions: values.functions.filter((e: any) => {
+        if(e.minValue && e.maxValue) {
+          if((e.minValue || e.maxValue) < values.minValue || (e.minValue || e.maxValue) > values.maxValue)
+            warning = 'In atessa che il gruppo di firma venga approvato dai master'
+          return true
+        }
+        return false
+      }).map((e: Function) => e),
+      groupName: values.groupName,
+      id: values.id ? values.id : Math.random(),
+      maxValue: values.maxValue,
+      minValue: values.minValue,
+      users: values.users.filter((e: any) => e.checked).map((e: User)=> e),
+      warning: warning
+    })
+
+    console.log(this.groupService.getAllGroups())
   }
 }

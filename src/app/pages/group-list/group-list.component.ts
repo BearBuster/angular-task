@@ -9,9 +9,11 @@ import {Group} from "../../interfaces/Group";
   styleUrls: ['./group-list.component.css']
 })
 export class GroupListComponent implements OnInit{
-  filterString: string = ''
+  filterString: string
 
   constructor(public groupService: GroupService, public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filterString = ''
+  }
 }

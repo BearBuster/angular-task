@@ -1,16 +1,54 @@
-import {Attribute, Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
+import {AfterViewInit, Attribute, Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-toggle-slider',
   templateUrl: './toggle-slider.component.html',
-  styleUrls: ['./toggle-slider.component.css']
+  styleUrls: ['./toggle-slider.component.css'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleSliderComponent),
+      multi: true
+    }
+  ],
+  animations: [
+    trigger('toggleTrigger', [
+      state('off', style({ transform: 'translateX(0%)' })),
+      state('on', style({ transform: 'translateX(100%)' })),
+      transition('on <=> off', animate('120ms ease-in-out'))
+    ])
+  ]
 })
-export class ToggleSliderComponent{
+export class ToggleSliderComponent implements ControlValueAccessor {
 
-  @Input() value: boolean
-  @Output() toggle = new EventEmitter<boolean>()
+  toggleOn:boolean;
+  disabled:boolean;
+  onChange = (toggleOn: boolean) => {}
+
   constructor() {}
 
+  registerOnChange(fn: (toggleOn: boolean) => void): void {
+    this.onChange = fn
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled
+  }
+
+  writeValue(toggleOn: boolean): void {
+    this.toggleOn = toggleOn
+  }
+
+  toggleClick(): void {
+    if (!this.disabled) {
+      this.toggleOn = !this.toggleOn;
+      this.onChange(this.toggleOn)
+    }
+  }
 
 }

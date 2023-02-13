@@ -19,6 +19,8 @@ import { CardOverviewFunctionListComponent } from './components/card-overview-fu
 import { CardOverviewUserListComponent } from './components/card-overview-user-list/card-overview-user-list.component';
 import { MyInputComponent } from './components/my-input/my-input.component';
 import { ToggleSliderComponent } from './components/toggle-slider/toggle-slider.component';
+import {TruncatePipesModule} from "angular-truncate-pipes";
+import { UserCheckboxComponent } from './components/user-checkbox/user-checkbox.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { ToggleSliderComponent } from './components/toggle-slider/toggle-slider.
     CardOverviewFunctionListComponent,
     CardOverviewUserListComponent,
     MyInputComponent,
-    ToggleSliderComponent
+    ToggleSliderComponent,
+    UserCheckboxComponent
   ],
     imports: [
         BrowserModule,
@@ -44,7 +47,8 @@ import { ToggleSliderComponent } from './components/toggle-slider/toggle-slider.
         RouterOutlet,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TruncatePipesModule
     ],
   providers: [],
   bootstrap: [AppComponent]

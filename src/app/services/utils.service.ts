@@ -22,13 +22,15 @@ export class UtilsService {
         return {
           ...fun,
           minValue: currentFunction.minValue,
-          maxValue: currentFunction.maxValue
+          maxValue: currentFunction.maxValue,
+          checked: true
         } as Function
       }else {
         return {
           ...fun,
           minValue: '',
-          maxValue: ''
+          maxValue: '',
+          checked: false
         } as Function
       }
     })
@@ -48,7 +50,8 @@ export class UtilsService {
         } as User
       }else {
         return {
-          ...user
+          ...user,
+          checked: false
         } as User
       }
     })

@@ -1,10 +1,10 @@
-<label>
+<label [class.disabled]="isDisabled">
   <span *ngIf="subText && subText.pos == 'before'">{{subText.text}}</span>
   <input
     [value]="value"
-    [type]="type"
     (input)="onChange($any($event.target).value)"
     (blur)="onTouched()" [disabled]="isDisabled"
+    [placeholder]="placeholder"
   >
-  <span *ngIf="subText && subText.pos == 'after'">{{subText.text}}</span>
+  <div *ngIf="subText && subText.pos == 'after'">{{subText.text}}</div>
 </label>

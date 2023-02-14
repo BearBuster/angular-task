@@ -7,6 +7,7 @@ import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup} f
 import {Function} from "../../interfaces/Function"
 import {User} from "../../interfaces/User";
 import {debounceTime, distinctUntilChanged, map, of, startWith, switchMap} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-card-overview',
@@ -19,7 +20,7 @@ export class CardOverviewComponent implements OnInit{
   group: Group
   form: FormGroup
 
-  constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder, public router: Router) {}
+  constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder, public router: Router, private _snackBar: MatSnackBar) {}
 
   usersArr$ = this.filterPlace.valueChanges.pipe(
     startWith(''),
@@ -40,7 +41,6 @@ export class CardOverviewComponent implements OnInit{
 
   ngOnInit(): void {
     this.form = this.createForm()
-    console.log(this.form.value)
   }
 
   createForm(){
@@ -115,7 +115,7 @@ export class CardOverviewComponent implements OnInit{
       users: values.users.filter((e: any) => e.checked).map((e: User)=> e),
       warning: warning
     })
-
+    this._snackBar.open("Modified!", "close")
     console.log(this.groupService.getAllGroups())
   }
 }

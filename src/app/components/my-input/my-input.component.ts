@@ -24,6 +24,7 @@ export class MyInputComponent implements ControlValueAccessor{
   @Input() value: any = ''
   @Input()isDisabled: boolean
   @Input()placeholder: string = ''
+  @Input()readOnly: boolean = false
   onChange = (value: any) => {}
   onTouched = () => {};
 

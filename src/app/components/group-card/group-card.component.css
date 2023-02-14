@@ -1,20 +1,16 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
 .error-card{
-  border: 1px #ffa726 solid;
+  border: 2px #ffa726 solid;
 }
 
 mat-card {
-  border: 1px solid transparent;
-}
-
-.error-card .bi-exclamation-diamond {
-  color: #ffa726;
-  display: inline;
+  border: 2px solid transparent;
+  border-radius: 20px;
 }
 
 .bi-exclamation-diamond {
-  display: none;
+  color: #ffa726;
 }
 
 .dropdown:hover .bi-three-dots {
@@ -29,31 +25,35 @@ mat-card:hover .bi-three-dots {
   display: none;
 }
 
-.circle {
-  display: inline-block;
-  background-color: gray;
-  margin-left: 2px;
-  border-radius: 50%;
-}
-
-.circle-inner {
-  color: white;
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  text-decoration: none;
-  height: 40px;
-  width: 40px;
-  font-size: 15px;
-}
-
-.card-info {
+.icon {
   color: #2196f3;
   border-color: #2196f3!important;
   margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-mat-card:hover .card-info {
+mat-card:hover .icon {
   color: gray;
-  border-color: gray!important;
+  border-color: gray !important;
+}
+
+hr {
+  margin: auto;
+  width: 80%
+}
+
+.pl-15 {
+  padding-left: 15px
+}
+
+.mr-10 {
+  margin-right: 10px
+}
+
+.mr-50 {
+  margin-right: 50px
 }

@@ -1,5 +1,4 @@
-<div class="mb-5">
-  <mat-form-field>
+<mat-form-field>
   <mat-label>Filtra...</mat-label>
   <input matInput [(ngModel)]="filterString">
 </mat-form-field>
@@ -7,6 +6,13 @@
 <app-group-card
   *ngFor="let group of this.groupService.groupList | groupListFilter : filterString"
   [group]="group"
-></app-group-card>
+/>
 
+<div class="d-flex justify-content-end">
+  <button
+    class="btn btn-primary"
+    (click)="router.navigate(['gruppi-di-firma','gruppo-di-firma-per-desposizioni'])"
+  >
+    Novo gruppo<i class="bi bi-plus-circle" style="padding-left: 10px"></i>
+  </button>
 </div>

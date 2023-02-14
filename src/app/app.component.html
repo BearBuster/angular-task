@@ -1,19 +1,15 @@
-<div>
-  <mat-toolbar color="primary" style="margin-bottom: 40px">
-    Angular Material 2 App
-  </mat-toolbar>
-  <div class="container">
-<!--    <form [formGroup]="form">-->
-<!--      <app-toggle-slider [(toggle)]="qew" />-->
-<!--      {{qew}}-->
-<!--    </form>-->
-<!--    {{ form.value | json }}-->
-<!--    <form [formGroup]="qwe">-->
-<!--      <app-my-input formControlName="dima" [isDisabled]="!s.toggleOn" />-->
-<!--      <app-toggle-slider formControlName="dis" #s />-->
-<!--    </form>-->
-<!--    {{ qwe.value | json }}-->
-    <router-outlet />
-  </div>
+<mat-toolbar color="primary" style="margin-bottom: 40px">
+  Angular Material 2 App
+</mat-toolbar>
+
+<div class="container">
+
+  <h2>
+    <ng-container *ngFor="let urlItem of ulr; let i=index">
+      <a [routerLink]="urlItem.url" >{{urlItem.title}}</a>&nbsp;
+    </ng-container>
+  </h2>
+
+  <router-outlet />
 </div>
 

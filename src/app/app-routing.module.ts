@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {CardOverviewComponent} from "./pages/card-overview/card-overview.component";
-import {CardListComponent} from "./pages/card-list/card-list.component";
 import {GroupListComponent} from "./pages/group-list/group-list.component";
 
 
 const routes: Routes = [
-  {path: '', component: GroupListComponent},
-  {path: 'card-overview/:id', component: CardOverviewComponent},
-  {path: 'card-overview', component: CardOverviewComponent},
-  {path: '**', component: CardListComponent },
+  {path: 'gruppi-di-firma', title: 'Gruppi di firma', children: [
+    {path: '', title: 'Gruppi di firma', component: GroupListComponent},
+    {path: 'gruppo-di-firma-per-desposizioni/:id', title: 'Gruppo di firma per desposizioni', component: CardOverviewComponent},
+    {path: 'gruppo-di-firma-per-desposizioni', title: 'Gruppo di firma per desposizioni', component: CardOverviewComponent}
+  ]},
+  {path: '**', redirectTo: 'gruppi-di-firma' },
 ];
 
 @NgModule({

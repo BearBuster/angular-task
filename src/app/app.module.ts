@@ -7,10 +7,10 @@ import { CardOverviewComponent } from './pages/card-overview/card-overview.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./modules/material/material.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {RouterOutlet} from "@angular/router";
-import {AppRoutingModule} from "./app-routing.module";
+import { RouterOutlet } from "@angular/router";
+import { AppRoutingModule } from "./app-routing.module";
 import { GroupListComponent } from './pages/group-list/group-list.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { GroupListFilterPipe } from './pipes/group-list-filter.pipe';
 import { FunctionRowComponent } from './components/function-row/function-row.component';
 import { GroupCardComponent } from './components/group-card/group-card.component';
@@ -19,9 +19,11 @@ import { CardOverviewFunctionListComponent } from './components/card-overview-fu
 import { CardOverviewUserListComponent } from './components/card-overview-user-list/card-overview-user-list.component';
 import { MyInputComponent } from './components/my-input/my-input.component';
 import { ToggleSliderComponent } from './components/toggle-slider/toggle-slider.component';
-import {TruncatePipesModule} from "angular-truncate-pipes";
+import { TruncatePipesModule } from "angular-truncate-pipes";
 import { UserCheckboxComponent } from './components/user-checkbox/user-checkbox.component';
 import { UserFormFilterPipe } from './pipes/user-form-filter.pipe';
+import { NgIconsModuleModule } from "./modules/ng-icons-module/ng-icons-module.module";
+import { UserCircleListComponent } from './components/user-circle-list/user-circle-list.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { UserFormFilterPipe } from './pipes/user-form-filter.pipe';
     MyInputComponent,
     ToggleSliderComponent,
     UserCheckboxComponent,
-    UserFormFilterPipe
+    UserFormFilterPipe,
+    UserCircleListComponent
   ],
     imports: [
         BrowserModule,
@@ -50,7 +53,8 @@ import { UserFormFilterPipe } from './pipes/user-form-filter.pipe';
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        TruncatePipesModule
+        TruncatePipesModule,
+        NgIconsModuleModule
     ],
   providers: [],
   bootstrap: [AppComponent]

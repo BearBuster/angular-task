@@ -1,4 +1,4 @@
-<label [class.disabled]="isDisabled">
+<label [class.disabled]="readOnly">
   <span *ngIf="subText && subText.pos == 'before'">{{subText.text}}</span>
   <input
     [value]="value"

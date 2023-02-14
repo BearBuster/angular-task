@@ -5,8 +5,20 @@ import {FormArray, FormGroup} from "@angular/forms";
   name: 'userFormFilter'
 })
 export class UserFormFilterPipe implements PipeTransform {
-  transform(formArray: FormArray): FormArray {
-    const filteredArray = formArray.getRawValue().filter(formGroup => (formGroup as FormGroup).controls['checked'].value === true);
-    return new FormArray(filteredArray);
+  transform(items: any[], field: string, value: string | boolean): any[] {
+    if (!items) {
+      return [];
+    }
+    if (!field || !value) {
+      return items;
+    }
+
+    if(typeof value == 'boolean'){
+      console.log(items.filter(singleItem => singleItem.value[field] == true))
+      return items.filter(singleItem => singleItem.value[field] == value);
+    }else if(typeof value == 'string'){
+      return items.filter(singleItem => singleItem.value[field].toLowerCase().includes(value.toLowerCase()));
+    }
+    return null
   }
 }

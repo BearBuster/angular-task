@@ -1,16 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Group} from "../interfaces/Group";
-import {FormArray, FormControl} from "@angular/forms";
+import {FormArray, FormGroup} from "@angular/forms";
 
 @Pipe({
   name: 'userFormFilter'
 })
 export class UserFormFilterPipe implements PipeTransform {
-
-  transform(userFormArray: FormArray, filterString: string): Group[] {
-    return userFormArray.value.users.filter((user: any)=>{
-      return user.fullName.toLowerCase().includes(filterString.toLowerCase())
-    });
+  transform(formArray: FormArray): FormArray {
+    const filteredArray = formArray.getRawValue().filter(formGroup => (formGroup as FormGroup).controls['checked'].value === true);
+    return new FormArray(filteredArray);
   }
-
 }

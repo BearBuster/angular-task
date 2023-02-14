@@ -3,9 +3,10 @@ import {Group} from "../../interfaces/Group";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GroupService} from "../../services/group.service";
 import {UtilsService} from "../../services/utils.service";
-import {Form, FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Function} from "../../interfaces/Function"
 import {User} from "../../interfaces/User";
+import {debounceTime, distinctUntilChanged, map, of, startWith, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-card-overview',
@@ -14,19 +15,37 @@ import {User} from "../../interfaces/User";
 })
 export class CardOverviewComponent implements OnInit{
 
-  filterPlace = 'Filtra...'
+  filterPlace = new FormControl()
   group: Group
   form: FormGroup
 
   constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder, public router: Router) {}
+
+  usersArr$ = this.filterPlace.valueChanges.pipe(
+    startWith(''),
+    debounceTime(200),
+    distinctUntilChanged(),
+    switchMap(val => {
+      return of(this.users.controls as AbstractControl[]).pipe(
+        map((formArr: AbstractControl[]) =>
+          formArr.filter((group: AbstractControl) => {
+            return group.get('fullName').value
+              .toLowerCase()
+              .includes(val.toLowerCase());
+          })
+        )
+      );
+    })
+  );
+
   ngOnInit(): void {
     this.form = this.createForm()
     console.log(this.form.value)
   }
 
   createForm(){
-  let groupId = Number(this.activeRouter.snapshot.paramMap.get('id'))
-  let group = this.groupService.getGroupById(groupId)
+    let groupId = Number(this.activeRouter.snapshot.paramMap.get('id'))
+    let group = this.groupService.getGroupById(groupId)
     if(group){
       return this.formBuilder.group({
         functions: this.formBuilder.array(

@@ -1,15 +1,15 @@
 .toggle-bg {
   display: inline-block;
-  height: 1rem;
-  width: 2rem;
-  background-color: #407cff;
+  height: 1.2rem;
+  width: 2.3rem;
+  background-color: #626262;
   border-radius: 3px;
   position: relative;
 }
 
 .toggle-bg .toggle {
-  width: 0.8rem;
-  margin: 0.2rem;
+  width: 1rem;
+  margin: 0.1rem;
   display: inline-block;
   background-color: white;
   position: absolute;
@@ -20,7 +20,7 @@
 }
 
 .toggle-on {
-  background-color: #626262;
+  background-color: #407cff;
 }
 
 .disabled {

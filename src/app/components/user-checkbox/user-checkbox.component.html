@@ -1,9 +1,7 @@
-<div class="d-flex align-items-center">
-  <label class="d-block" style="margin-right: 10px">
-    <input #checkBox type="checkbox" [checked]="value" (change)="onChange(checkBox.checked)">
-  </label>
-  <div class="circle" style="margin-right: 10px">
+<label class="d-flex align-items-center" style="margin-right: 10px">
+  <input #checkBox class="d-block" type="checkbox" [checked]="value" (change)="onChange(checkBox.checked)">
+  <div class="circle" style="margin-right: 10px; margin-left: 10px">
     <p class="circle-inner">{{initial}}</p>
   </div>
   <span>{{fullName}}</span>
-</div>
+</label>

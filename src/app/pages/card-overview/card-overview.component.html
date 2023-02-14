@@ -25,12 +25,17 @@
 
       <div class="col d-flex justify-content-end opacity-50 m-2" style="padding-top: 17px">
 
-        <div class="circle" *ngFor="let user of users">
-          <p class="circle-inner">1</p>
-        </div>
-        <div class="circle">
-          <p class="circle-inner">2</p>
-        </div>
+        <ng-container
+          *ngFor="let user of users.controls; let i=index"
+          formArrayName="users"
+        >
+          <div class="circle"
+            [formGroupName]="i"
+            *ngIf="user.value.checked"
+          >
+            <p class="circle-inner">{{user.value.userInitials}}</p>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -43,7 +48,7 @@
       </h3>
 
       <table style="width: 100%">
-        <div style="height: 590px; overflow-y: scroll">
+        <div style="height: 590px; overflow-y: scroll; padding-right: 20px">
         <thead>
           <tr>
             <th>Servizio</th>
@@ -80,11 +85,11 @@
         <h5 class="text-secondary">Sono disponibili solo gli utenti dispositivi</h5>
       </h3>
       <div class="col-4">
-        <app-my-input placeholder="Filtra..."/>
+        <app-my-input [formControl]="filterPlace" placeholder="Filtra..."/>
       </div>
       <ul style="list-style: none; padding: 0; margin-top: 10px">
         <ng-container
-          *ngFor="let user of users.controls;let i=index"
+          *ngFor="let user of usersArr$ | async;let i=index"
           formArrayName="users"
         >
           <li class="my-2" [formGroupName]="i">

@@ -14,8 +14,7 @@ export class UserFormFilterPipe implements PipeTransform {
     }
 
     if(typeof value == 'boolean'){
-      console.log(items.filter(singleItem => singleItem.value[field] == true))
-      return items.filter(singleItem => singleItem.value[field] == value);
+      return items.filter(singleItem => singleItem[field] == value);
     }else if(typeof value == 'string'){
       return items.filter(singleItem => singleItem.value[field].toLowerCase().includes(value.toLowerCase()));
     }

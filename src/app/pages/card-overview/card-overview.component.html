@@ -1,97 +1,84 @@
 <form (ngSubmit)="submit()" [formGroup]="form">
 
-  <div class="mb-4 shadow-lg container rounded rounded-3 pt-3">
+  <div class="mb-4 shadow-lg container rounded rounded-3 p-4">
     <h2 class="fw-bold">Dettagli gruppo di firma</h2>
-    <div class="row pb-3">
+    <div class="row">
       <div class="col-10">
-        <label class="col-4 text-secondary mr-20">
+        <label class="col-4 text-secondary me-4">
           Nome gruppo
           <app-my-input type="text" formControlName="groupName" />
         </label>
 
-        <label class="col text-secondary mr-20">
+        <label class="col text-secondary me-4">
           Soglia minima servizi
-          <div class="my-form-control d-flex">
-            <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EURO', pos: 'after'}" />
-          </div>
+          <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" />
         </label>
 
-        <label class="col text-secondary mr-20">
+        <label class="col text-secondary">
           Soglia massima servizi
-          <div class="my-form-control d-flex">
-            <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EURO', pos: 'after'}" />
-          </div>
+          <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" />
         </label>
       </div>
 
-      <app-user-circle-list [users]="form.get()" />
-
-      <div class="col d-flex justify-content-end opacity-50 m-2" style="padding-top: 17px">
-
-        <ng-container
-          *ngFor="let user of users.controls | userFormFilter : 'checked' : true; let i=index"
-          formArrayName="users"
-        >
-          <div class="circle"
-            [formGroupName]="i"
-          >
-            <p class="circle-inner">{{user.value.userInitials}}</p>
-          </div>
-        </ng-container>
+      <div class="col-2 d-flex justify-content-end align-items-center">
+        <app-user-circle-list [users]="form.value.users | userFormFilter : 'checked': true" />
       </div>
     </div>
   </div>
 
   <div class="d-flex justify-content-between mb-3">
-    <div class="function-list-container shadow-lg rounded rounded-3">
+    <div class="function-list-container shadow-lg rounded rounded-3 p-4">
       <h2 class="fw-bold">
         Abilita servizi per gruppo di firma
-        <h5 class="text-secondary">Seleziona i servizi e imposta la relativa soglia</h5>
+        <h5 class="text-secondary fw-bold">Seleziona i servizi e imposta la relativa soglia</h5>
       </h2>
 
-      <table style="width: 100%">
-        <div style="height: 590px; overflow-y: scroll; padding-right: 20px">
-        <thead>
-          <tr>
-            <th>Servizio</th>
-            <th>Soglia minima</th>
-            <th>Soglia massima</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let fun of functions.controls; let i = index"
-            formArrayName="functions"
-            class="row-height"
-          >
-            <ng-container [formGroupName]="i">
-              <td>
-                <app-toggle-slider formControlName="checked" #toggle />
-                <span style="margin-left: 10px" title="{{fun.value.name}}">{{ fun.value.name | characters: 20 }}</span>
-              </td>
-              <td>
-                <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EURO', pos: 'after'}" [readOnly]="!toggle.toggleOn" />
-              </td>
-              <td>
-                <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EURO', pos: 'after'}" [readOnly]="!toggle.toggleOn" />
-              </td>
-            </ng-container>
-          </tr>
-        </tbody>
+      <table class="w-100">
+        <div class="overflow-y-scroll pe-1" style="height: 590px">
+          <thead>
+            <tr class="text-secondary" style="font-weight: 500;">
+              <td >Servizio</td>
+              <td>Soglia minima</td>
+              <td>Soglia massima</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              *ngFor="let fun of functions.controls; let i = index"
+              formArrayName="functions"
+              class="row-height"
+            >
+              <ng-container [formGroupName]="i">
+                <td width="40%">
+                  <div class="d-flex w-100 h-100">
+                    <app-toggle-slider formControlName="checked" #toggle />
+                    <div class="ms-2" title="{{fun.value.name}}">{{ fun.value.name | characters: 15 }}</div>
+                  </div>
+                </td>
+                <td>
+                  <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" />
+                </td>
+                <td>
+                  <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" />
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
         </div>
       </table>
     </div>
-    <div class="user-list-container shadow-lg rounded rounded-3">
+    <div class="user-list-container shadow-lg rounded rounded-3 p-4">
       <h2 class="fw-bold">
         Seleziona utenti da aggiungere al gruppo
-        <h5 class="text-secondary">Sono disponibili solo gli utenti dispositivi</h5>
+        <h5 class="text-secondary fw-bold">Sono disponibili solo gli utenti dispositivi</h5>
       </h2>
       <div class="col-4">
         <app-my-input [formControl]="filterPlace" placeholder="Filtra..."/>
       </div>
-      <ul style="list-style: none; padding: 0; margin-top: 10px">
+      <ul style="list-style: none;" class="p-0 mt-3">
         <ng-container
-          *ngFor="let user of usersArr$ | async;let i=index"
+          *ngFor="let user of users.controls | userFormFilter : 'fullName' : filterPlace.value;let i=index"
           formArrayName="users"
         >
           <li class="my-2" [formGroupName]="i">
@@ -101,8 +88,13 @@
       </ul>
     </div>
   </div>
-  <div class="w-100" style="display: flex; justify-content: end">
+  <div class="w-100 d-flex justify-content-end">
     <button class="btn" (click)="router.navigate([''])">Indietro</button>
-    <button class="btn btn-primary" type="submit">Modifica</button>
+    <ng-container *ngIf="form.disabled == true; else saveButton">
+      <button class="btn btn-primary" (click)="form.enable()">Modifica</button>
+    </ng-container>
+    <ng-template #saveButton>
+      <button class="btn btn-primary" type="submit">Salva</button>
+    </ng-template>
   </div>
 </form>

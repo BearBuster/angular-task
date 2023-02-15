@@ -1,6 +1,6 @@
 .circle {
   display: inline-block;
-  background-color: gray;
+  background-color: #e7edfe;
   margin-left: 2px;
   border-radius: 50%;
   height: 40px;
@@ -8,7 +8,7 @@
 }
 
 .circle-inner {
-  color: white;
+  color: #177dd0;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
@@ -16,4 +16,5 @@
   height: 40px;
   width: 40px;
   font-size: 15px;
+  font-weight: bold;
 }

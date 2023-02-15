@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {GroupService} from "../../services/group.service";
 import {Router} from "@angular/router";
+import {RedirectService} from "../../services/redirect.service";
 
 @Component({
   selector: 'app-group-list',
@@ -10,5 +11,5 @@ import {Router} from "@angular/router";
 export class GroupListComponent{
   filterString: string = ''
 
-  constructor(public groupService: GroupService, public router: Router) {}
+  constructor(public groupService: GroupService, public router: Router, public redirectService: RedirectService) {}
 }

@@ -1,11 +1,14 @@
 label {
-  background: rgba(187, 187, 187, 0.35);
-  border-bottom: 2px solid #8f8f8f;
+  background: rgb(245, 246, 248);
+  border-bottom: 2px solid #d9dbdd;
   display: flex;
+  color: #474c55;
 }
 
 div {
   align-self: center;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .qwe {

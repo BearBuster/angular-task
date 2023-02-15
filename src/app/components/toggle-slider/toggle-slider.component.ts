@@ -16,7 +16,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   animations: [
     trigger('toggleTrigger', [
       state('off', style({ transform: 'translateX(0%)' })),
-      state('on', style({ transform: 'translateX(100%)' })),
+      state('on', style({ transform: 'translateX(130%)' })),
       transition('on <=> off', animate('120ms ease-in-out'))
     ])
   ]

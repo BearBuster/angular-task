@@ -3,13 +3,6 @@
 </mat-toolbar>
 
 <div class="container">
-
-  <h2>
-    <ng-container *ngFor="let urlItem of ulr; let i=index">
-      <a [routerLink]="urlItem.url" >{{urlItem.title}}</a>&nbsp;
-    </ng-container>
-  </h2>
-
   <router-outlet />
 </div>
 

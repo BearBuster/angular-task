@@ -142,26 +142,6 @@ export const GroupList: Group[] = [
         userInitials: 'SN',
         fullName: 'Sara Neri',
       },
-      {
-        id: '09452W4295001',
-        userInitials: 'EB',
-        fullName: 'Elisa Blu',
-      },
-      {
-        id: '09452W4295002',
-        userInitials: 'SN',
-        fullName: 'Sara Neri',
-      },
-      {
-        id: '09452W4295001',
-        userInitials: 'EB',
-        fullName: 'Elisa Blu',
-      },
-      {
-        id: '09452W4295002',
-        userInitials: 'SN',
-        fullName: 'Sara Neri',
-      },
     ],
   },
 ];

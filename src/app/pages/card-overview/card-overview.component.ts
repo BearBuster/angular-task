@@ -3,10 +3,9 @@ import {Group} from "../../interfaces/Group";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GroupService} from "../../services/group.service";
 import {UtilsService} from "../../services/utils.service";
-import {AbstractControl, Form, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Function} from "../../interfaces/Function"
 import {User} from "../../interfaces/User";
-import {debounceTime, distinctUntilChanged, map, of, startWith, switchMap} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -20,31 +19,24 @@ export class CardOverviewComponent implements OnInit{
   group: Group
   form: FormGroup
 
-  constructor(public activeRouter: ActivatedRoute, public groupService: GroupService, public utilsService: UtilsService, public formBuilder: FormBuilder, public router: Router, private _snackBar: MatSnackBar) {}
+  constructor(public activeRouter: ActivatedRoute,
+              public groupService: GroupService,
+              public utilsService: UtilsService,
+              public formBuilder: FormBuilder,
+              public router: Router,
+              private _snackBar: MatSnackBar
+  ) {}
 
-  usersArr$ = this.filterPlace.valueChanges.pipe(
-    startWith(''),
-    debounceTime(200),
-    distinctUntilChanged(),
-    switchMap(val => {
-      return of(this.users.controls as AbstractControl[]).pipe(
-        map((formArr: AbstractControl[]) =>
-          formArr.filter((group: AbstractControl) => {
-            return group.get('fullName').value
-              .toLowerCase()
-              .includes(val.toLowerCase());
-          })
-        )
-      );
-    })
-  );
 
   ngOnInit(): void {
     this.form = this.createForm()
+    if(this.activeRouter.snapshot.queryParams['disable'] == 'true'){
+      this.form.disable()
+    }
   }
 
   createForm(){
-    let groupId = Number(this.activeRouter.snapshot.paramMap.get('id'))
+    let groupId = Number(this.activeRouter.snapshot.queryParams['id'])
     let group = this.groupService.getGroupById(groupId)
     if(group){
       return this.formBuilder.group({
@@ -89,10 +81,6 @@ export class CardOverviewComponent implements OnInit{
     return this.form.get("users") as FormArray
   }
 
-  toggleFunctionInput(value: any){
-    console.log(value)
-  }
-
   submit() {
     let values = this.form.value
     if(values.id){
@@ -116,6 +104,6 @@ export class CardOverviewComponent implements OnInit{
       warning: warning
     })
     this._snackBar.open("Modified!", "close")
-    console.log(this.groupService.getAllGroups())
+    this.router.navigate(["gruppi-di-firma"])
   }
 }

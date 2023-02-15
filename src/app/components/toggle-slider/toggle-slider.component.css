@@ -1,37 +1,35 @@
 .toggle-bg {
-  display: inline-block;
-  height: 1.2rem;
-  width: 2.3rem;
-  background-color: #626262;
-  border-radius: 3px;
+  display: block;
+  height: 17px;
+  width: 35px;
+  background-color: #8f9297;
+  border-radius: 4px;
   position: relative;
 }
 
 .toggle-bg .toggle {
-  width: 1rem;
-  margin: 0.1rem;
+  width: 13px;
+  margin: 2px;
   display: inline-block;
   background-color: white;
   position: absolute;
   top: 0;
   bottom: 0;
   border-radius: 3px;
-  box-shadow: 2px 2px 12px #00000050;
 }
 
 .toggle-on {
-  background-color: #407cff;
+  background-color: #0064b3;
 }
 
 .disabled {
   pointer-events: none;
-  opacity: 0.5
 }
 
 .disabled .toggle-bg {
-  background-color: #626262!important;
+  background-color: #d2d3d5 !important;
 }
 
 .disabled .toggle {
-  background-color: #000000 !important;
+  background-color: #74747c !important;
 }

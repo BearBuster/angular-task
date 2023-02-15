@@ -7,7 +7,6 @@ import {GroupListComponent} from "./pages/group-list/group-list.component";
 const routes: Routes = [
   {path: 'gruppi-di-firma', title: 'Gruppi di firma', children: [
     {path: '', title: 'Gruppi di firma', component: GroupListComponent},
-    {path: 'gruppo-di-firma-per-desposizioni/:id', title: 'Gruppo di firma per desposizioni', component: CardOverviewComponent},
     {path: 'gruppo-di-firma-per-desposizioni', title: 'Gruppo di firma per desposizioni', component: CardOverviewComponent}
   ]},
   {path: '**', redirectTo: 'gruppi-di-firma' },

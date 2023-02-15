@@ -1,6 +1,7 @@
 <mat-card
   class="mb-4 p-3 shadow-lg"
   [ngClass]="{'error-card': group.warning}"
+  (click)="router.navigate(['gruppi-di-firma','gruppo-di-firma-per-desposizioni'], { queryParams: { id : group.id, disable: true}})"
 >
   <mat-card-title class="d-flex justify-content-between">
     <div>
@@ -10,7 +11,7 @@
         <div ngbDropdownMenu>
           <span class="pl-15">Alto</span>
           <hr>
-          <button ngbDropdownItem (click)="router.navigate(['gruppi-di-firma','gruppo-di-firma-per-desposizioni', group.id])" >
+          <button ngbDropdownItem (click)="router.navigate(['gruppi-di-firma','gruppo-di-firma-per-desposizioni'], { queryParams: { id : group.id}})" >
             <i class="bi bi-pencil mr-10"></i>Modify
           </button>
           <button ngbDropdownItem (click)="groupService.removeGroupById(group.id)" >

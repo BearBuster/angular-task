@@ -1,6 +1,8 @@
 <label [class.disabled]="readOnly">
   <span *ngIf="subText && subText.pos == 'before'">{{subText.text}}</span>
   <input
+    [min]="minValue"
+    [max]="maxValue"
     [value]="value"
     (input)="onChange($any($event.target).value)"
     (blur)="onTouched()" [disabled]="isDisabled"

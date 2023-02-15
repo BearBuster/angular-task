@@ -9,13 +9,13 @@
       <div ngbDropdown #myDrop="ngbDropdown" class="d-inline-block dropdown" (mouseleave)="myDrop.close()">
         <i class="bi bi-three-dots" (mouseenter)="myDrop.open()"></i>
         <div ngbDropdownMenu>
-          <span class="pl-15">Alto</span>
+          <span class="ps-3">Alto</span>
           <hr>
           <button ngbDropdownItem (click)="router.navigate(['gruppi-di-firma','gruppo-di-firma-per-desposizioni'], { queryParams: { id : group.id}})" >
-            <i class="bi bi-pencil mr-10"></i>Modify
+            <i class="bi bi-pencil me-1"></i>Modify
           </button>
           <button ngbDropdownItem (click)="groupService.removeGroupById(group.id)" >
-            <i class="bi bi-trash mr-10"></i>Delete
+            <i class="bi bi-trash me-1"></i>Delete
           </button>
         </div>
       </div>
@@ -28,7 +28,7 @@
   <mat-card-subtitle class="mb-4" *ngIf="group.warning">{{group.warning}}</mat-card-subtitle>
 
   <mat-card-content class="d-flex align-items-center">
-    <div class="d-flex mr-50 align-items-center" *ngFor="let fun of group.functions.slice(0,4)">
+    <div class="d-flex me-5 align-items-center" *ngFor="let fun of group.functions.slice(0,4)">
       <ng-icon name="heroCreditCard" size="30" class="rounded-circle border border-2 icon"></ng-icon>
       <div>
         <p class="fw-bold mb-0">{{fun.name}}</p>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="d-flex mr-50 align-items-center" *ngIf="group.functions.length > 4">
+    <div class="d-flex me-5 align-items-center" *ngIf="group.functions.length > 4">
       <ng-icon name="heroCreditCard" size="30" class="rounded-circle border border-2 icon"></ng-icon>
       <div class="fw-bold">+{{group.functions.length - 5}} servizi</div>
     </div>

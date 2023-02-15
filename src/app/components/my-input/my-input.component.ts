@@ -22,9 +22,12 @@ export class MyInputComponent implements ControlValueAccessor{
   @Input() type: string
   @Input() subText: SubText
   @Input() value: any = ''
-  @Input()isDisabled: boolean
-  @Input()placeholder: string = ''
-  @Input()readOnly: boolean = false
+  @Input() isDisabled: boolean
+  @Input() placeholder: string = ''
+  @Input() readOnly: boolean = false
+  @Input() maxValue: number
+  @Input() minValue: number
+
   onChange = (value: any) => {}
   onTouched = () => {};
 
@@ -42,9 +45,7 @@ export class MyInputComponent implements ControlValueAccessor{
     this.onTouched = fn
   }
   setDisabledState(isDisabled: boolean): void {
-    if(!this.isDisabled) {
-      this.isDisabled = isDisabled
-    }
+    this.isDisabled = isDisabled
   }
 
 }

@@ -11,12 +11,12 @@
 
         <label class="col text-secondary me-4">
           Soglia minima servizi
-          <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" />
+          <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" #minValue/>
         </label>
 
         <label class="col text-secondary">
           Soglia massima servizi
-          <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" />
+          <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" #maxValue />
         </label>
       </div>
 
@@ -48,6 +48,7 @@
               *ngFor="let fun of functions.controls; let i = index"
               formArrayName="functions"
               class="row-height"
+              style="height: 60px;"
             >
               <ng-container [formGroupName]="i">
                 <td width="40%">
@@ -57,10 +58,10 @@
                   </div>
                 </td>
                 <td>
-                  <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" />
+                  <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" [minValue]="minValue.value"/>
                 </td>
                 <td>
-                  <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" />
+                  <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" [maxValue]="maxValue.value" />
                 </td>
               </ng-container>
             </tr>

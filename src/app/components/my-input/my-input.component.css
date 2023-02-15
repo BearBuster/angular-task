@@ -23,6 +23,10 @@ input {
   height: 35px;
 }
 
+input:invalid {
+  color: red;
+}
+
 
 label:has(input:invalid){
   border-bottom: 2px solid red!important;

@@ -3,10 +3,6 @@
   padding: 15px;
 }
 
-tr > td {
-  height: 60px;
-}
-
 table td + td {
   border-left:15px solid transparent;
 }

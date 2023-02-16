@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
-import { heroUsers } from '@ng-icons/heroicons/outline';
-import { heroCreditCard } from '@ng-icons/heroicons/outline';
+import {
+  heroUsers,
+  heroCreditCard,
+  heroExclamationTriangle
+} from '@ng-icons/heroicons/outline';
 import { NgIconsModule } from '@ng-icons/core';
 
 @NgModule({
   imports: [
     NgIconsModule.withIcons({
       heroUsers,
-      heroCreditCard
+      heroCreditCard,
+      heroExclamationTriangle
     })
   ],
   exports: [

@@ -1,12 +1,17 @@
-<label [class.disabled]="readOnly">
+<label [class.readOnly]="readOnly || isDisabled" [class.warning]="type == 'number' && warning">
   <span *ngIf="subText && subText.pos == 'before'">{{subText.text}}</span>
+  <ng-icon
+    *ngIf="type == 'number' && warning && value && (readOnly || isDisabled)"
+    name="heroExclamationTriangle" size="20" class="mx-2 exclamationTriangle"
+  ></ng-icon>
   <input
-    [min]="minValue"
-    [max]="maxValue"
-    [value]="value"
+    #MyInput
+    [(ngModel)]="value"
     (input)="onChange($any($event.target).value)"
     (blur)="onTouched()" [disabled]="isDisabled"
     [placeholder]="placeholder"
+    [readonly]="readOnly"
+    [type]="type"
   >
-  <div *ngIf="subText && subText.pos == 'after'">{{subText.text}}</div>
+  <div *ngIf="type == 'number' && (value || !readOnly)">EUR</div>
 </label>

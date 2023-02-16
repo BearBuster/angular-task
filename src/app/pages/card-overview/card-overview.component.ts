@@ -6,7 +6,7 @@ import {UtilsService} from "../../services/utils.service";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Function} from "../../interfaces/Function"
 import {User} from "../../interfaces/User";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-card-overview',
@@ -19,12 +19,13 @@ export class CardOverviewComponent implements OnInit{
   group: Group
   form: FormGroup
 
-  constructor(public activeRouter: ActivatedRoute,
-              public groupService: GroupService,
-              public utilsService: UtilsService,
-              public formBuilder: FormBuilder,
-              public router: Router,
-              private _snackBar: MatSnackBar
+  constructor(
+    public activeRouter: ActivatedRoute,
+    public groupService: GroupService,
+    public utilsService: UtilsService,
+    public formBuilder: FormBuilder,
+    public router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
 
@@ -89,9 +90,12 @@ export class CardOverviewComponent implements OnInit{
     let warning = ''
     this.groupService.addGroupList({
       functions: values.functions.filter((e: any) => {
-        if(e.minValue && e.maxValue) {
-          if((e.minValue || e.maxValue) < values.minValue || (e.minValue || e.maxValue) > values.maxValue)
-            warning = 'In atessa che il gruppo di firma venga approvato dai master'
+        if(e.checked && e.minValue && e.maxValue) {
+          if(e.minValue != values.minValue){
+            warning = `Il numero minimo`
+          } else if(e.maxValue != values.maxValue){
+            warning = `Il numero massimo `
+          }
           return true
         }
         return false
@@ -103,7 +107,11 @@ export class CardOverviewComponent implements OnInit{
       users: values.users.filter((e: any) => e.checked).map((e: User)=> e),
       warning: warning
     })
-    this._snackBar.open("Modified!", "close")
+
+
+    let snackBarConfig = new MatSnackBarConfig()
+    snackBarConfig.duration = 500
+    this._snackBar.open("Modified!",'', snackBarConfig)
     this.router.navigate(["gruppi-di-firma"])
   }
 }

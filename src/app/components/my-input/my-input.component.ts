@@ -1,5 +1,6 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Attribute, Component, forwardRef, Input, OnInit} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {UtilsService} from "../../services/utils.service";
 
 interface SubText {
   text: string
@@ -17,7 +18,7 @@ interface SubText {
     }
   ]
 })
-export class MyInputComponent implements ControlValueAccessor{
+export class MyInputComponent implements ControlValueAccessor, OnInit{
 
   @Input() type: string
   @Input() subText: SubText
@@ -25,13 +26,14 @@ export class MyInputComponent implements ControlValueAccessor{
   @Input() isDisabled: boolean
   @Input() placeholder: string = ''
   @Input() readOnly: boolean = false
-  @Input() maxValue: number
-  @Input() minValue: number
+  @Input() warning: boolean = false
+  @Input() exactValue: any
+  pattern: string
 
   onChange = (value: any) => {}
   onTouched = () => {};
 
-  constructor() {}
+  constructor(public utilsService: UtilsService) {}
 
   writeValue(value: string): void {
     this.value = value
@@ -46,6 +48,9 @@ export class MyInputComponent implements ControlValueAccessor{
   }
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled
+  }
+
+  ngOnInit(): void {
   }
 
 }

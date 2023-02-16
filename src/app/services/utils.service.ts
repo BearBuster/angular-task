@@ -59,4 +59,11 @@ export class UtilsService {
     })
   }
 
+  numberIsBetween(num: any, min: number, max: number): boolean {
+    if(Number(num)){
+      return num >= min && num <= max
+    }
+    return false
+  }
+
 }

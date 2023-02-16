@@ -14,7 +14,6 @@ export class CardOverviewFunctionListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.group.control?.get(this.groupName))
   }
 
   // get functions(){

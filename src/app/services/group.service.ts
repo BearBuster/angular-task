@@ -40,7 +40,6 @@ export class GroupService {
   }
 
   addGroupList(group: Group){
-    console.log(group)
     this.groupList.push(group)
   }
 

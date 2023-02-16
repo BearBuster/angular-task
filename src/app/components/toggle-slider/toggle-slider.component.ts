@@ -37,8 +37,6 @@ export class ToggleSliderComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    console.log(this.toggleOn)
-    console.log(this.disabled)
     this.disabled = isDisabled
   }
 

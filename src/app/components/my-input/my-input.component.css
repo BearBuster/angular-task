@@ -3,16 +3,13 @@ label {
   border-bottom: 2px solid #d9dbdd;
   display: flex;
   color: #474c55;
+  align-items: center;
 }
 
 div {
   align-self: center;
   padding-right: 10px;
   padding-left: 10px;
-}
-
-.qwe {
-  border-bottom: 2px solid red;
 }
 
 input {
@@ -23,22 +20,37 @@ input {
   height: 35px;
 }
 
-input:invalid {
-  color: red;
+.readOnly {
+  background: transparent!important;
+  border: 0 transparent solid!important;
+  pointer-events: none;
 }
 
-
-label:has(input:invalid){
-  border-bottom: 2px solid red!important;
+.exclamationTriangle {
+  color: #ffa726;
+  display: none
 }
+
+.warning .exclamationTriangle {
+  display: block;
+}
+
+.warning.readOnly input {
+  color: #ffa726;
+  font-weight: bold;
+}
+
+.warning {
+  border-bottom: 2px solid #ffa726;
+}
+
+label:has(input:invalid) {
+  border-bottom: 2px solid #ffa726;
+}
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-
-.disabled {
-  background: transparent!important;
-  border: 0 transparent solid!important;
 }

@@ -9,14 +9,14 @@
           <app-my-input type="text" formControlName="groupName" />
         </label>
 
-        <label class="col text-secondary me-4">
+        <label class="col-2 text-secondary me-4">
           Soglia minima servizi
-          <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" #minValue/>
+          <app-my-input type="number" formControlName="minValue" #MainMinInput/>
         </label>
 
-        <label class="col text-secondary">
+        <label class="col-2 text-secondary">
           Soglia massima servizi
-          <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" #maxValue />
+          <app-my-input type="number" formControlName="maxValue" #MainMaxInput/>
         </label>
       </div>
 
@@ -58,10 +58,10 @@
                   </div>
                 </td>
                 <td>
-                  <app-my-input type="number" formControlName="minValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" [minValue]="minValue.value"/>
+                  <app-my-input #MyMinInput type="number" formControlName="minValue" [readOnly]="!toggle.toggleOn" [warning]="MyMinInput.value != MainMinInput.value"/>
                 </td>
                 <td>
-                  <app-my-input type="number" formControlName="maxValue" [subText]="{text: 'EUR', pos: 'after'}" [readOnly]="!toggle.toggleOn" [maxValue]="maxValue.value" />
+                  <app-my-input #MyMaxInput type="number" formControlName="maxValue" [readOnly]="!toggle.toggleOn" [warning]="MyMaxInput.value != MainMaxInput.value" />
                 </td>
               </ng-container>
             </tr>

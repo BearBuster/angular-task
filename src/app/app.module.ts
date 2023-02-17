@@ -24,6 +24,7 @@ import { UserCheckboxComponent } from './components/user-checkbox/user-checkbox.
 import { UserFormFilterPipe } from './pipes/user-form-filter.pipe';
 import { NgIconsModuleModule } from "./modules/ng-icons-module/ng-icons-module.module";
 import { UserCircleListComponent } from './components/user-circle-list/user-circle-list.component';
+import { GroupListSortPipe } from './pipes/group-list-sort.pipe';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UserCircleListComponent } from './components/user-circle-list/user-circ
     ToggleSliderComponent,
     UserCheckboxComponent,
     UserFormFilterPipe,
-    UserCircleListComponent
+    UserCircleListComponent,
+    GroupListSortPipe
   ],
     imports: [
         BrowserModule,

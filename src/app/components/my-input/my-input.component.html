@@ -1,17 +1,18 @@
-<label [class.readOnly]="readOnly || isDisabled" [class.warning]="type == 'number' && warning">
-  <span *ngIf="subText && subText.pos == 'before'">{{subText.text}}</span>
+<label [class.readOnly]="readOnly || isDisabled ">
   <ng-icon
-    *ngIf="type == 'number' && warning && value && (readOnly || isDisabled)"
     name="heroExclamationTriangle" size="20" class="mx-2 exclamationTriangle"
   ></ng-icon>
   <input
     #MyInput
+    [class.ng-invalid]="exactValue && MyInput.value ? !(MyInput.value == exactValue) : false"
     [(ngModel)]="value"
+    [value]="value"
     (input)="onChange($any($event.target).value)"
     (blur)="onTouched()" [disabled]="isDisabled"
     [placeholder]="placeholder"
     [readonly]="readOnly"
     [type]="type"
+    [pattern]="'^'+exactValue+'$'"
   >
   <div *ngIf="type == 'number' && (value || !readOnly)">EUR</div>
 </label>

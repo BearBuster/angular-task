@@ -28,7 +28,6 @@ export class MyInputComponent implements ControlValueAccessor, OnInit{
   @Input() readOnly: boolean = false
   @Input() warning: boolean = false
   @Input() exactValue: any
-  pattern: string
 
   onChange = (value: any) => {}
   onTouched = () => {};

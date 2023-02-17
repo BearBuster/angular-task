@@ -94,7 +94,7 @@ export class CardOverviewComponent implements OnInit{
           if(e.minValue != values.minValue){
             warning = `Il numero minimo`
           } else if(e.maxValue != values.maxValue){
-            warning = `Il numero massimo `
+            warning = `Il numero massimo`
           }
           return true
         }

@@ -4,7 +4,7 @@
 </mat-form-field>
 
 <app-group-card
-  *ngFor="let group of this.groupService.groupList | groupListFilter : filterString"
+  *ngFor="let group of (this.groupService.groupList | groupListFilter : filterString) | groupListSort"
   [group]="group"
 />
 

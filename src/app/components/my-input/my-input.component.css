@@ -31,21 +31,17 @@ input {
   display: none
 }
 
-.warning .exclamationTriangle {
+
+label:has(input.ng-invalid) {
+  border-bottom: 2px solid #ffa726;
+}
+
+label.readOnly:has(input.ng-invalid) .exclamationTriangle {
   display: block;
 }
 
-.warning.readOnly input {
+label.readOnly:has(input.ng-invalid) input {
   color: #ffa726;
-  font-weight: bold;
-}
-
-.warning {
-  border-bottom: 2px solid #ffa726;
-}
-
-label:has(input:invalid) {
-  border-bottom: 2px solid #ffa726;
 }
 
 

@@ -58,10 +58,10 @@
                   </div>
                 </td>
                 <td>
-                  <app-my-input #MyMinInput type="number" formControlName="minValue" [readOnly]="!toggle.toggleOn" [warning]="MyMinInput.value != MainMinInput.value"/>
+                  <app-my-input #MyMinInput type="number" formControlName="minValue" [readOnly]="!toggle.toggleOn" [exactValue]="MainMinInput.value"/>
                 </td>
                 <td>
-                  <app-my-input #MyMaxInput type="number" formControlName="maxValue" [readOnly]="!toggle.toggleOn" [warning]="MyMaxInput.value != MainMaxInput.value" />
+                  <app-my-input #MyMaxInput type="number" formControlName="maxValue" [readOnly]="!toggle.toggleOn" [exactValue]="MainMaxInput.value" />
                 </td>
               </ng-container>
             </tr>

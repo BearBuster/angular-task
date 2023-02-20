@@ -123,8 +123,8 @@ export const GroupList: Group[] = [
       {
         name: 'Bonifico SEPA',
         code: 'SEPA-TRANSFER',
-        minValue: 'null',
-        maxValue: 'null',
+        minValue: '123',
+        maxValue: '124',
       },
     ],
     groupName: 'Gruppo firma Sepa Transfer',

@@ -3,7 +3,7 @@ import {Group} from "../../interfaces/Group";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GroupService} from "../../services/group.service";
 import {UtilsService} from "../../services/utils.service";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Function} from "../../interfaces/Function"
 import {User} from "../../interfaces/User";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
@@ -11,12 +11,11 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 @Component({
   selector: 'app-card-overview',
   templateUrl: './card-overview.component.html',
-  styleUrls: ['./card-overview.component.css', './custom-checkbox.scss']
+  styleUrls: ['./card-overview.component.css']
 })
 export class CardOverviewComponent implements OnInit{
 
   filterPlace = new FormControl()
-  group: Group
   form: FormGroup
 
   constructor(
@@ -45,10 +44,10 @@ export class CardOverviewComponent implements OnInit{
           this.utilsService.fetchFunctions(group.functions)
             .map(fun => this.formBuilder.group(fun))
         ),
-        groupName: group.groupName,
+        groupName: new FormControl(group.groupName, Validators.required),
         id: group.id,
-        maxValue: group.maxValue,
-        minValue: group.minValue,
+        maxValue: new FormControl(group.maxValue, Validators.required),
+        minValue: new FormControl(group.minValue, Validators.required),
         users: this.formBuilder.array(
           this.utilsService.fetchUsers(group.users)
             .map(user => this.formBuilder.group(user))
@@ -61,10 +60,10 @@ export class CardOverviewComponent implements OnInit{
           this.utilsService.fetchFunctions()
             .map(fun => this.formBuilder.group(fun))
         ),
-        groupName: "",
+        groupName: new FormControl('', Validators.required),
         id: 0,
-        maxValue: "",
-        minValue: "",
+        maxValue: new FormControl('', Validators.required),
+        minValue: new FormControl('', Validators.required),
         users: this.formBuilder.array(
           this.utilsService.fetchUsers()
             .map(user => this.formBuilder.group(user))
@@ -83,6 +82,12 @@ export class CardOverviewComponent implements OnInit{
   }
 
   submit() {
+    let snackBarConfig = new MatSnackBarConfig()
+    snackBarConfig.duration = 500
+    if(this.form.invalid){
+      this._snackBar.open("Incorrect data in form",'', snackBarConfig)
+      return;
+    }
     let values = this.form.value
     if(values.id){
       this.groupService.removeGroupById(values.id)
@@ -108,9 +113,6 @@ export class CardOverviewComponent implements OnInit{
       warning: warning
     })
 
-
-    let snackBarConfig = new MatSnackBarConfig()
-    snackBarConfig.duration = 500
     this._snackBar.open("Modified!",'', snackBarConfig)
     this.router.navigate(["gruppi-di-firma"])
   }

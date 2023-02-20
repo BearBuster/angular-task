@@ -1,3 +1,4 @@
+<h1><a [routerLink]="['gruppi-di-firma']" class="text-decoration-none">Gruppi di firma > </a>Gruppo di firma per desposizioni</h1>
 <form (ngSubmit)="submit()" [formGroup]="form">
 
   <div class="mb-4 shadow-lg container rounded rounded-3 p-4">
@@ -6,7 +7,7 @@
       <div class="col-10">
         <label class="col-4 text-secondary me-4">
           Nome gruppo
-          <app-my-input type="text" formControlName="groupName" />
+          <app-my-input type="text" formControlName="groupName" [ngStyle]="{'border-bottom': this.form.get('groupName').invalid? '1px red solid': ''}"/>
         </label>
 
         <label class="col-2 text-secondary me-4">

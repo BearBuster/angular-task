@@ -22,3 +22,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border: 6px solid transparent;
   background-clip: content-box;
 }
+
+*,*::before,*::after{
+  box-sizing: border-box;
+}

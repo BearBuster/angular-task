@@ -1,13 +1,16 @@
-<mat-card
-  class="mb-4 p-3 shadow-lg"
+
+
+<div
+  class="shadow-lg bg-white mb-4 p-3 card"
   [ngClass]="{'error-card': group.warning}"
   (click)="router.navigate(['gruppi-di-firma','gruppo-di-firma-per-desposizioni'], { queryParams: { id : group.id, disable: true}})"
 >
-  <mat-card-title class="d-flex justify-content-between">
-    <div>
-      <i *ngIf="group.warning" class="bi bi-exclamation-diamond mx-1"></i>{{group.groupName}}
-      <div ngbDropdown #myDrop="ngbDropdown" class="d-inline-block dropdown" (mouseleave)="myDrop.close()">
-        <i class="bi bi-three-dots" (mouseenter)="myDrop.open()"></i>
+  <div class="d-flex justify-content-between">
+    <div class="fw-bold fs-5">
+      <i *ngIf="group.warning" class="bi bi-exclamation-diamond"></i>
+      {{group.groupName}}
+      <div ngbDropdown class="d-inline-block" #myDrop="ngbDropdown" (click)="$event.stopPropagation()">
+        <i class="bi bi-three-dots" ngbDropdown (click)="myDrop.open()"></i>
         <div ngbDropdownMenu>
           <span class="ps-3">Alto</span>
           <hr>
@@ -23,23 +26,23 @@
 
     <app-user-circle-list [users]="group.users" [limit]="3" />
 
-  </mat-card-title>
+  </div>
 
-  <mat-card-subtitle class="mb-4" *ngIf="group.warning">{{group.warning}}</mat-card-subtitle>
+  <p class="mb-4 text-secondary" *ngIf="group.warning">{{group.warning}}</p>
 
-  <mat-card-content class="d-flex align-items-center">
-    <div class="d-flex me-5 align-items-center" *ngFor="let fun of group.functions.slice(0,4)">
-      <ng-icon name="heroCreditCard" size="30" class="rounded-circle border border-2 icon"></ng-icon>
-      <div>
-        <p class="fw-bold mb-0">{{fun.name}}</p>
-        {{fun.minValue}}$ - {{fun.maxValue}}$
+    <div class=" d-flex flex-wrap">
+      <div class="d-flex m-3 align-items-center" *ngFor="let fun of group.functions.slice(0,4)" style="width: 200px">
+        <ng-icon name="heroCreditCard" size="30" class="rounded-circle border border-2 icon"></ng-icon>
+        <div>
+          <p class="fw-bold mb-0" [title]="fun.name">{{fun.name | characters : 15}}</p>
+          {{fun.minValue}}$ - {{fun.maxValue}}$
+        </div>
+      </div>
+
+      <div class="d-flex m-3 align-items-center" *ngIf="group.functions.length > 4" style="width: 200px">
+        <ng-icon name="heroCreditCard" size="30" class="rounded-circle border border-2 icon"></ng-icon>
+        <div class="fw-bold">+{{group.functions.length - 5}} servizi</div>
       </div>
     </div>
 
-    <div class="d-flex me-5 align-items-center" *ngIf="group.functions.length > 4">
-      <ng-icon name="heroCreditCard" size="30" class="rounded-circle border border-2 icon"></ng-icon>
-      <div class="fw-bold">+{{group.functions.length - 5}} servizi</div>
-    </div>
-  </mat-card-content>
-
-</mat-card>
+</div>

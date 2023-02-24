@@ -1,3 +1,5 @@
+
+
 .function-list-container {
   width: 49%;
   padding: 15px;
@@ -10,4 +12,36 @@ table td + td {
 .user-list-container {
   width: 49%;
   padding: 15px;
+}
+
+.grup-name {
+  width: 300px;
+}
+.min, .max {
+  width: 200px;
+}
+
+@media (max-width: 1200px) {
+  .grup-name, .min, .max {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .function-list-container {
+    width: 100%;
+  }
+
+  .user-list-container {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 550px) {
+  .function-table {
+    width: calc(100vw - 36px /* paddings */ - 20px /* scroll */) ;
+  }
 }

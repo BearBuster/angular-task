@@ -1,12 +1,12 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
-.error-card{
-  border: 2px #ffa726 solid;
-}
-
-mat-card {
+.card {
   border: 2px solid transparent;
   border-radius: 20px;
+}
+
+.error-card{
+  border: 2px #ffa726 solid;
 }
 
 .bi-exclamation-diamond {
@@ -15,14 +15,6 @@ mat-card {
 
 .dropdown:hover .bi-three-dots {
   color: #2196f3;
-}
-
-mat-card:hover .bi-three-dots {
-  display: inline;
-}
-
-.bi-three-dots {
-  display: none;
 }
 
 .icon {
@@ -36,7 +28,7 @@ mat-card:hover .bi-three-dots {
   align-items: center;
 }
 
-mat-card:hover .icon {
+.card:hover .icon {
   color: gray;
   border-color: gray !important;
 }

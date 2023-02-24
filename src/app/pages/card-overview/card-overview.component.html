@@ -3,39 +3,38 @@
 
   <div class="mb-4 shadow-lg container rounded rounded-3 p-4">
     <h2 class="fw-bold">Dettagli gruppo di firma</h2>
-    <div class="row">
-      <div class="col-10">
-        <label class="col-4 text-secondary me-4">
-          Nome gruppo
-          <app-my-input type="text" formControlName="groupName" [ngStyle]="{'border-bottom': this.form.get('groupName').invalid? '1px red solid': ''}"/>
-        </label>
+    <div class="d-flex flex-wrap" style="gap: 30px">
+      <label class="d-block text-secondary grup-name">
+        Nome gruppo
+        <app-my-input type="text" formControlName="groupName" [ngStyle]="{'border-bottom': this.form.get('groupName').invalid? '1px red solid': ''}"/>
+      </label>
 
-        <label class="col-2 text-secondary me-4">
-          Soglia minima servizi
-          <app-my-input type="number" formControlName="minValue" #MainMinInput/>
-        </label>
+      <label class="d-block text-secondary min">
+        Soglia minima servizi
+        <app-my-input type="number" formControlName="minValue" #MainMinInput/>
+      </label>
 
-        <label class="col-2 text-secondary">
-          Soglia massima servizi
-          <app-my-input type="number" formControlName="maxValue" #MainMaxInput/>
-        </label>
-      </div>
+      <label class="d-block text-secondary max">
+        Soglia massima servizi
+        <app-my-input type="number" formControlName="maxValue" #MainMaxInput/>
+      </label>
 
-      <div class="col-2 d-flex justify-content-end align-items-center">
+      <div class="d-flex justify-content-end align-items-center ms-auto">
         <app-user-circle-list [users]="form.value.users | userFormFilter : 'checked': true" />
       </div>
     </div>
+
   </div>
 
-  <div class="d-flex justify-content-between mb-3">
-    <div class="function-list-container shadow-lg rounded rounded-3 p-4">
+  <div class="mb-3 d-flex flex-wrap justify-content-between">
+    <div class="function-list-container shadow-lg rounded rounded-3 p-4 mb-4">
       <h2 class="fw-bold">
         Abilita servizi per gruppo di firma
         <h5 class="text-secondary fw-bold">Seleziona i servizi e imposta la relativa soglia</h5>
       </h2>
 
       <table class="w-100">
-        <div class="overflow-y-scroll pe-1" style="height: 590px">
+        <div class="overflow-y-scroll pe-1 function-table" style="height: 590px">
           <thead>
             <tr class="text-secondary" style="font-weight: 500;">
               <td >Servizio</td>
@@ -70,7 +69,7 @@
         </div>
       </table>
     </div>
-    <div class="user-list-container shadow-lg rounded rounded-3 p-4">
+    <div class="user-list-container shadow-lg rounded rounded-3 p-4 mb-4">
       <h2 class="fw-bold">
         Seleziona utenti da aggiungere al gruppo
         <h5 class="text-secondary fw-bold">Sono disponibili solo gli utenti dispositivi</h5>
@@ -90,6 +89,7 @@
       </ul>
     </div>
   </div>
+
   <div class="w-100 d-flex justify-content-end">
     <button class="btn" (click)="router.navigate([''])">Indietro</button>
     <ng-container *ngIf="form.disabled == true; else saveButton">

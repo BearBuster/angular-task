@@ -43,5 +43,10 @@ table td + td {
 @media (max-width: 550px) {
   .function-table {
     width: calc(100vw - 36px /* paddings */ - 20px /* scroll */) ;
+    overflow-x: scroll;
+  }
+
+  td {
+    min-width: 200px;
   }
 }
